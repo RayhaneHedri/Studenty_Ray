@@ -1,0 +1,21 @@
+<div class="container">
+  <h2 class="event-title">Event Creation</h2>
+
+  <div class="form-group">
+    <input class="form-box" type="text" name="titre" placeholder="Title" [(ngModel)]="event.titre" required #titre="ngModel"><br>
+    <input class="form-box" type="text" name="description" placeholder="Description" [(ngModel)]="event.description" required #description="ngModel"><br>
+    <input class="form-box" type="text" name="date" placeholder="Date" [(ngModel)]="event.date" required #date="ngModel"><br>
+    <label for="category">Category:</label>
+    <select class="form-box" name="category" required [(ngModel)]="event.category" #category="ngModel">
+      <option value="" disabled selected hidden>Choose a category</option>
+      <option value="option1">Integration Event</option>
+      <option value="option2">Educational Event</option>
+      <option value="option3">Social Event</option>
+      <option value="option4">Athletic Event</option>
+      <option value="option5">Art and Culture Event</option>
+      <option value="option6">Competitive Event</option>
+    </select><br>
+  </div>
+</div>
+
+<button class="btn-primary" (click)="addEvent(event)">Add Event</button>

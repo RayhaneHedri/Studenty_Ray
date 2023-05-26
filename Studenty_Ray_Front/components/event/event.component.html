@@ -1,0 +1,128 @@
+<!-- EVENT -->
+<div class="wrapper">
+  <div class="main-card">
+    <div class="cards" >
+      <div class="card">
+        <div class="content">
+          <div class="cover-picture-box">
+            <div class="cover-picture">
+              <img src="http://localhost:9091/User/{{ user.coverImage }}" alt="Photo de Couverture" />
+            </div>
+          </div>
+          <img src="http://localhost:9091/User/{{ user.profileImage }}" alt="Photo de profile" class="profile-picture" alt="Profile-picture"/>
+          <h3 style="transform:translateY(-150%);font-style: Poppins;">{{ event.user.nom }} {{ event.user.prenom }}</h3>
+          <h1 class="event-title"style="font-size:70px;transform:translateY(-80%);font-style: Poppins;">{{event.titre}}</h1>
+          <small style="transform:translateY(-300%);font-style: Poppins;">Published on : {{event.date}}</small>
+  
+  
+          <div class="img">
+            <img src="http://localhost:9091/Event/{{ event.image }}" alt="Event Picture" style="max-width: 100%; max-height: 700px;"/>
+          </div>
+          <br>
+          <p style="margin-left: 10%; margin-right: 10%; text-align: center; color: black; font-size: medium; font-family: Arial, Helvetica, sans-serif; text-indent: 5px;">{{event.description}}</p>
+          <br>
+  
+          <a style="margin-left: 80%; color: #03c1ad; font-size: x-large; margin-bottom: -28px;"  href="/home/events/event" (click)="likeEvent()">
+            <fa-icon [icon]="faComment"  class="material-icons"></fa-icon>
+          </a>
+          <p style="margin-left: 88%; color: #03c1ad;"> {{nComment}} Comments </p>
+  
+  
+  
+          <a style="color: #03C1AD; margin-top: -45px; margin-bottom: 17px; margin-left: -92%; font-size: x-large;" [ngClass] = "{'is-active' : hamClick}"  href="/home/events/event" (click)="likeEvent()">
+            <fa-icon style="color: #03C1AD;" [icon]="faThumbsUp"  class="material-icons"></fa-icon>
+          </a>
+          <!--
+          <a class="dislike" style="color: #03C1AD; margin-top: -45px; margin-left: -88%;font-size: x-large;" (click)="dislikeEvent()"  href="/home/events/event">
+            <fa-icon style="color: #03C1AD;" [icon]="faThumbsDown"  class="material-icons"></fa-icon>
+          </a>
+          -->
+          <i onclick="likeEvent()" #like class="fa fa-thumbs-up"></i>
+  
+  
+          <p style="color: #03C1AD; margin-top: -28px; margin-left: -82%;">{{event.like}} Likes</p>
+  
+          <br>
+          <br>
+          <!--Add Comment-->
+          <div class="form-group" *ngIf="comment" [hidden]="hideCommentform">
+            <input style="width: 90%; height: 40px; margin-left: 0px;" type="text" class="form-control" placeholder="Comment" [(ngModel)]="comment.description" required #description="ngModel"/>
+            <a href="/home/events/event">
+              <button   routerLink="/home/events/event" class="btn btn-primary" style="height: 40px; margin-left: -20%;" (click)="addComment(comment)" [disabled]="description.invalid"> Add Comment </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--Comments-->
+  <!-- <div class="container2"> -->
+  <div class="main-card"  *ngFor="let com of commentaire">
+    <div class="cards">
+      <div class="card">
+        <div class="content">
+          <li style="list-style-type: none; float: left; margin-left: -85%; margin-top: -20px;">
+            <img class="comPic" src="http://localhost:9091/User/{{ com.user.profileImage }}" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid #03c1ad; display: inline;" alt="profile Image"/>
+            <a class="nav-link" style="font-weight: bold; display: inline; color: black; margin-left: 0px; margin-bottom: 10px;">
+              <i class="ion-md-power"></i> &nbsp; {{com.user.nom}} {{com.user.prenom}} <br><small class="pub" style="margin-left: 125px;display: block;transform: translateY(-26px);">Published on : {{com.date}}</small>
+            </a>
+            <br>
+          </li>
+            <p style="margin-left: 8%; margin-right:8% ; margin-top: 10px; color: black; text-align: justify;" >{{com.description}}</p>
+            <br>
+            <!--<p style="margin-left: -100px; color: #03c1ad;" (click)="getReponseByCommentaireId(com._id)">Show Respons</p>-->
+        </div>
+        <a href="/home/events/event" (click)="deleteCommentaire(com._id)" [hidden]="hideSupp(com.user._id)"><fa-icon [icon]="faTrash"  class="material-icons" style="display: flex;float: right; transform: translateY(-900%);margin-right: 30px;"></fa-icon></a>
+  
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- </div> -->
+  <!--Respons-->
+  <!--<div class="main-card" *ngFor="let rep of listReponse">
+    <div class="cards" >
+      <div class="card">
+        <div class="content">
+          <li style="list-style-type: none; float: left; margin-left: -85%; margin-top: -20px;" >
+            <img src="http://localhost:9091/User/{{ rep.user.profileImage }}" style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid #03c1ad; display: inline;" alt="profile Image"/>
+              <a class="nav-link">
+                <i class="ion-md-power" style="margin-left: -60%;"></i> {{rep.user.nom}} {{rep.user.prenom}}
+              </a>
+              <br>
+          </li>
+          <div class="details">
+            <small>Published on : {{rep.date}}</small>
+          <div class="name">
+            <p>{{rep.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>-->
+  
+  <!--<div class="main-card">
+    <div class="cards" >
+      <div class="card">
+        <div class="content">
+          <li style="list-style-type: none; float: left; margin-left: -85%; margin-top: -20px;">
+            <img src="http://localhost:9091/User/{{ user.profileImage }}" style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid #03c1ad; display: inline;" alt="profile Image"/>
+            <a class="nav-link" style="font-weight: bold; display: inline; color: black; margin-left: 0px; margin-bottom: 10px;">
+              <i class="ion-md-power"></i> {{user.nom}} {{user.prenom}}
+            </a>
+            <br>
+          </li>
+          <br>
+          <div class="form-group" *ngIf="comment">
+            <input style="width: 90%; height: 40px; margin-left: 0px;" type="text" class="form-control" placeholder="Comment"[(ngModel)]="comment.description" required #description="ngModel"/>
+            <button  class="btn btn-primary" style="height: 40px; margin-left: -20%;" (click)="addComment(comment)"> Send </button>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>-->
+  
+  
+  

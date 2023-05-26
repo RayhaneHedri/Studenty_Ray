@@ -1,0 +1,16 @@
+<div class="container">
+    <h2 class="event-title">Event Inscription</h2>
+  
+    <div class="form-group">
+      <input class="form-box" type="text" name="full_name" placeholder="Full Name" [(ngModel)]="event.full_name" required #full_name="ngModel"><br>
+      <input class="form-box" type="text" name="CIN" placeholder="CIN" [(ngModel)]="event.CIN" required #CIN="ngModel"><br>
+      <input class="form-box" type="text" name="email" placeholder="E-mail" [(ngModel)]="event.email" required #email="ngModel"><br>
+      <input class="form-box" type="phone_num" name="phone_num" placeholder="Phone Number" [(ngModel)]="event.phone_num" required #phone_num="ngModel"><br>
+      <input class="form-box" type="university" name="university" placeholder="University" [(ngModel)]="event.university" required #university="ngModel"><br>
+      <input class="form-box" type="field" name="field" placeholder="Field" [(ngModel)]="event.field" required #field="ngModel"><br>
+      <input class="form-box" type="occupation" name="occupation" placeholder="Occupation" [(ngModel)]="event.occupation" required #occupation="ngModel"><br>
+    </div>
+  </div>
+  
+  <button class="btn-primary" (click)="addEvent(event)">Submit</button>
+  
